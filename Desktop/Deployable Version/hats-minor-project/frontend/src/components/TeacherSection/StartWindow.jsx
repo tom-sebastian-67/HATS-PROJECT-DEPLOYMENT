@@ -11,21 +11,17 @@ export const StartWindow = ({selectedExam, setShowStartExam, setNewState, durati
 
         setLoading(true);
         try {
-            const response = await axios.post("http://localhost:3000/changeExamStatus", {
+            const response = await axios.post("https://hats-project-deployment-production.up.railway.app/changeExamStatus", {
                 examId: selectedExam,
                 status: "active"
             });
 
-            // const res = await axios.post("http://localhost:3000/submit", formData, {
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            // });
-            const response2 = await axios.get("http://localhost:3000/getExamData/", {
+            
+            const response2 = await axios.get("https://hats-project-deployment-production.up.railway.app/getExamData/", {
                 params: { examId: selectedExam },
             });
               
-            const response1 = await axios.post("http://localhost:3000/addExam", {examId: selectedExam, duration: response2.data.examData.duration}, {
+            const response1 = await axios.post("https://hats-project-deployment-production.up.railway.app/addExam", {examId: selectedExam, duration: response2.data.examData.duration}, {
                 headers: {
                     "Content-Type": "application/json",
                 },

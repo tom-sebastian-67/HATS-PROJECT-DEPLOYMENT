@@ -16,7 +16,7 @@ export const StudentNav = ({
 //     console.log("Logging out");
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:3000/logout",
+//         
 //         {},
 //         {
 //           withCredentials: true,
