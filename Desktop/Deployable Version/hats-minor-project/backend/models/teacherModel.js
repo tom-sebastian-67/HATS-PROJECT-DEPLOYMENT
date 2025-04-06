@@ -156,7 +156,7 @@ const updateTeacherDataDB = async (id, name, email) => {
     throw error;
   }
 };
-
+//test commit
 export {
   getClassExamsDB,
   getClassesDb,
