@@ -129,7 +129,7 @@ export const ClassView = ({ classId, classroomName, subjectName,socket, setExamS
     setLoadingStudents(true);
     try {
       const response = await axios.get(
-        "https://hats-project-deployment-production.up.railway.app/getClassStudents",
+        "https://hats-project-deployment-production.up.railway.app/getClassStudents/",
         {
           params: {
             classId: classId,
