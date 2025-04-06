@@ -128,14 +128,10 @@ export const ClassView = ({ classId, classroomName, subjectName,socket, setExamS
   async function getNewStudents() {
     setLoadingStudents(true);
     try {
-      const response = await axios.get(
-        "https://hats-project-deployment-production.up.railway.app/getClassStudents/",
-        {
-          params: {
-            classId: classId,
-          },
-        }
-      );
+      const response = axios.get(`https://hats-project-deployment-production.up.railway.app/getClassStudents`, {
+        params: { classId: 88 },
+        withCredentials: true,
+      });
       //console.log("Response:", response.data);
       var tempArr = [];
       response.data.map((item, index) => {

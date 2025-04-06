@@ -72,14 +72,11 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
         });
         setExamName(response.data.examData.name);
         setDuration(response.data.examData.duration);
-        const response1 = await axios.get(
-          "https://hats-project-deployment-production.up.railway.app/getClassStudents/",
-          {
-            params: {
-              classId: classId,
-            },
-          }
-        );
+        const response1 = axios.get(`https://hats-project-deployment-production.up.railway.app/getClassStudents`, {
+          params: { classId: 88 },
+          withCredentials: true,
+        });
+        
         //console.log(response1.data);
         var tempArr = [];
         response1.data.map((item) => {
