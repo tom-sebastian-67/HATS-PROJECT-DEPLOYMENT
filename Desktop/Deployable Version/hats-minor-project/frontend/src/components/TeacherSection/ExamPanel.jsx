@@ -73,7 +73,7 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
         setExamName(response.data.examData.name);
         setDuration(response.data.examData.duration);
         const response1 = await axios.get(
-          "http://hats-project-deployment-production.up.railway.app/getClassStudents",
+          "https://hats-project-deployment-production.up.railway.app/getClassStudents",
           {
             params: { classId: classId },
           }
