@@ -77,7 +77,7 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
           withCredentials: true,
         });
         
-        //console.log(response1.data);
+        console.log(response1.data);
         var tempArr = [];
         response1.data.map((item) => {
           tempArr.push({
@@ -88,6 +88,8 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
             joinedAt: item.joined_at,
           });
         });
+        console.log('response1');
+        console.log(response1.data);
         if(studentData.length == 0) {
           setStudentData(tempArr);
           //console.log(tempArr);
