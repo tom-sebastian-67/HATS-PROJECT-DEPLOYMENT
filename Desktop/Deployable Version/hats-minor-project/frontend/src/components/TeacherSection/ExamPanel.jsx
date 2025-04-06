@@ -52,12 +52,12 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
     // convertToPDFandDownload();
     async function getResultData() {
       try {
-        const response = await axios.get('https://hats-project-deployment-production.up.railway.app/getResult', {
+        const response = await axios.get('https://codeflow-deploy-production.up.railway.app/getResult', {
           params: {
             examId: examId
           }
         })
-        console.log(response.data);
+        //console.log(response.data);
       } catch(error) {
 
       }
@@ -67,17 +67,20 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
     async function getFullData() {
       setLoading(true);
       try {
-        const response = await axios.get("https://hats-project-deployment-production.up.railway.app/getExamData/", {
+
+        const response = await axios.get("https://codeflow-deploy-production.up.railway.app/getExamData/", {
           params: { examId: examId },
         });
         setExamName(response.data.examData.name);
         setDuration(response.data.examData.duration);
-        const response1 = axios.get(`https://hats-project-deployment-production.up.railway.app/getClassStudents`, {
-          params: { classId: 88 },
-          withCredentials: true,
+        const response1 = await axios.get(`https://codeflow-deploy-production.up.railway.app/getClassStudents`, {
+          params: { classId: classId },
+          
         });
         
-        console.log(response1.data);
+        //console.log('response1 ane!');
+        //console.log(classId);
+        //console.log(response1.data);
         var tempArr = [];
         response1.data.map((item) => {
           tempArr.push({
@@ -88,14 +91,15 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
             joinedAt: item.joined_at,
           });
         });
-        console.log('response1');
-        console.log(response1.data);
+        //console.log('response1');
+        //console.log(response1.data);
         if(studentData.length == 0) {
           setStudentData(tempArr);
-          //console.log(tempArr);
         }
+        
         //console.log(tempArr);
       } catch (error) {
+        console.log('error form here!');
         console.log(error);
       } finally {
         setLoading(false);
@@ -124,7 +128,7 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("https://hats-project-deployment-production.up.railway.app", {
+    socket.current = io("https://codeflow-deploy-production.up.railway.app", {
       withCredentials: true,
       transports: ["websocket.currentRef", "polling"]
     });
@@ -168,7 +172,7 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
             return foundStudent? { ...student, status: foundStudent.status } : student;
           });   
         });   
-      }, 1000);
+      }, 2000);
       
     });
   
@@ -285,6 +289,8 @@ export const ExamPanel = ({ examId = 22, setSelected }) => {
 
         <div className="box-border relative  my-4 flex flex-col gap-0 w-full  bg-[#1B1D1F] rounded-sm outline outline-1 outline-[#1f2124]">
           <div className="flex flex-row gap-2 flex-wrap max-h-[150px] h-[150px] overflow-y-scroll p-2 content-start">
+            {console.log('testing')}
+            {console.log(studentData)}
             {studentData.map((item) => {
              
               return (
